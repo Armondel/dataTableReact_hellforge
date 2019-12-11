@@ -3,13 +3,13 @@ import {css} from "aphrodite";
 
 import styles from "./styles";
 
-import {MagicTable} from "../index";
+import {TableStub} from "../index";
 
 const App: React.FC = () => {
     return (
         <div className={css(styles.app)}>
             <label>Hello there, General Kenobi!</label>
-            <MagicTable />
+            <TableStub />
         </div>
     )
 };

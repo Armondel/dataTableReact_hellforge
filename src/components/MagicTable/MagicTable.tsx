@@ -1,27 +1,34 @@
 import * as React from "react";
 import {AutoSizer, GridCellProps, MultiGrid} from "react-virtualized";
+import {IMagicTableProps} from "./interfaces";
 
-const MagicTable: React.FC = () => {
+const MagicTable: React.FC<IMagicTableProps<any>> = props => {
+    const {
+        data,
+        cellRenderer: customCellRenderer,
+        columnDefinitions,
+        columnHeaderRenderer
+    } = props;
 
-    const cellRenderer = ({columnIndex, key, rowIndex, style}: GridCellProps) => (
-        <div
-            key={key}
-            style={style}>
-            {`${columnIndex} : ${rowIndex}`}
-        </div>
-    );
+    const cellRenderer = React.useCallback((gridCellProps: GridCellProps) => {
+        const column = columnDefinitions[gridCellProps.columnIndex];
+
+        return gridCellProps.rowIndex
+            ? customCellRenderer(data[gridCellProps.rowIndex - 1], column, gridCellProps)
+            : columnHeaderRenderer(column, gridCellProps)
+    }, [data, customCellRenderer, columnDefinitions, columnHeaderRenderer]);
 
     return (
         <AutoSizer>
             {({height, width}) => (
                 <MultiGrid
                     cellRenderer={cellRenderer}
-                    columnCount={50}
-                    columnWidth={75}
+                    columnCount={columnDefinitions.length}
+                    columnWidth={150}
                     fixedRowCount={1}
                     height={height}
-                    rowCount={50}
-                    rowHeight={30}
+                    rowCount={data.length + 1}
+                    rowHeight={50}
                     width={width}
                 />
             )}
