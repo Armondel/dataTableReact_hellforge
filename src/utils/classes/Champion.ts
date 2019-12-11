@@ -1,21 +1,19 @@
-interface IIndexable {
-    [key: string]: any;
-}
+export default class Champion {
+    [x: string] : any;
 
-export interface IChampion extends IIndexable {
-    version: string;
-    id: string;
-    key: string;
-    name: string;
-    title: string;
-    blurb: string;
-    info: {
+    version?: string;
+    id?: string;
+    key?: string;
+    name?: string;
+    title?: string;
+    blurb?: string;
+    info?: {
         attack: number;
         defense: number;
         magic: number;
         difficulty: number;
     };
-    image: {
+    image?: {
         full: string;
         sprite: string;
         group: string;
@@ -24,9 +22,9 @@ export interface IChampion extends IIndexable {
         w: number;
         h: number;
     };
-    tags: [string];
-    partype: string;
-    stats: {
+    tags?: [string];
+    partype?: string;
+    stats?: {
         hp: number;
         hpperlevel: number;
         mp: number;
@@ -48,4 +46,16 @@ export interface IChampion extends IIndexable {
         attackspeedperlevel: number;
         attackspeed: number;
     };
+
+    constructor(data: any) {
+        Object.assign(this, data);
+    }
+
+    public getChampionPropertyInfo <T>(path: string | ((champion: Champion) => T)): T {
+        if (typeof(path) === "string") {
+            return this[path] as T;
+        } else {
+            return path(this);
+        }
+    }
 }
