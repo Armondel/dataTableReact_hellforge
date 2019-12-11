@@ -1,4 +1,8 @@
-export interface IChampion {
+interface IIndexable {
+    [key: string]: any;
+}
+
+export interface IChampion extends IIndexable {
     version: string;
     id: string;
     key: string;

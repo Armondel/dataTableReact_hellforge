@@ -14,4 +14,13 @@ export class ChampionData {
         const championName: string = ChampionNames[value];
         return this.data[championName];
     }
+
+    public getChampionPropertyInfo <T>(championName: ChampionNames, path: string | ((champion: IChampion) => T)): T {
+        const champion = this.getChampionInfo(championName);
+        if (typeof(path) === "string") {
+            return champion[path] as T;
+        } else {
+            return path(champion);
+        }
+    }
 }
