@@ -1,5 +1,5 @@
 import App from "./App/App";
-import MagicTable from "./MagicTable/MagicTable";
+import MagicTable from "../main/MagicTable/MagicTable";
 import TableStub from "./TableStub/TableStub";
 
 export {

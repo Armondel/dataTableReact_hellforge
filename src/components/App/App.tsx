@@ -8,7 +8,6 @@ import {TableStub} from "../index";
 const App: React.FC = () => {
     return (
         <div className={css(styles.app)}>
-            <label>Hello there, General Kenobi!</label>
             <TableStub />
         </div>
     )
