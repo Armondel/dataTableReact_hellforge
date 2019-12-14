@@ -12,6 +12,11 @@ export class ChampionData {
 
     public getChampionInfo(value: ChampionNames): Champion {
         const championName: string = ChampionNames[value];
-        return new Champion(this.data[championName]);
+        return this.getChampionInfoByName(championName);
     }
+
+    public getChampionInfoByName(value: string): Champion {
+        return new Champion(this.data[value])
+    }
+
 }

@@ -64,20 +64,15 @@ const TableStub: React.FC = () => {
         )
     }, []);
 
-    const stubGridData: Champion[] = React.useMemo(() => [
-        championData.getChampionInfo(ChampionNames.Aatrox),
-        championData.getChampionInfo(ChampionNames.Caitlyn),
-        championData.getChampionInfo(ChampionNames.Akali),
-        championData.getChampionInfo(ChampionNames.Ahri),
-        championData.getChampionInfo(ChampionNames.Alistar),
-        championData.getChampionInfo(ChampionNames.Amumu),
-        championData.getChampionInfo(ChampionNames.Anivia),
-        championData.getChampionInfo(ChampionNames.AurelionSol),
-    ], []);
+    const stubGridData: Champion[] = React.useMemo(() =>
+        Object.keys(ChampionNames)
+            .filter((x: string) => isNaN(parseInt(x)))
+            .map((x: string) => championData.getChampionInfoByName(x))
+        , [championData]);
 
     const stubGridColumnDefinitions: ColumnDefinition[] = React.useMemo(() =>
-        ColumnHelper.GenerateColumnDefinitions()
-    , []);
+            ColumnHelper.GenerateColumnDefinitions()
+        , []);
 
     const magicTableProps: IMagicTableProps<Champion> = {
         data: stubGridData,
