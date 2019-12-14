@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         whiteSpace: "nowrap",
         textOverflow: "ellipsis",
         ":hover": {
-            background: "rgba(0, 0, 0, 0.38)"
+            background: "rgba(0, 200, 255, 0.2)"
         }
     }
 });
