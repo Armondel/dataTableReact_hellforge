@@ -1,0 +1,6 @@
+.rdg-root {
+  height: 100% !important;
+}
+.rdg-viewport {
+  height: calc(100% - 35px) !important;
+}

@@ -1,14 +1,12 @@
-import React from 'react';
-import {css} from "aphrodite";
-
+import React from "react";
+import ReactDataGripStub from "../ReactGridStub/ReactGridStub";
+import { css } from "aphrodite";
 import styles from "./styles";
-
-import {TableStub} from "../index";
 
 const App: React.FC = () => {
     return (
         <div className={css(styles.app)}>
-            <TableStub />
+            <ReactDataGripStub />
         </div>
     )
 };
